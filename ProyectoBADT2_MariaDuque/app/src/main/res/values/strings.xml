@@ -6,4 +6,6 @@
     <string name="btn_filter">Filtrar</string>
     <string name="tv_slct_filters">Filtros:</string>
     <string name="tv_consult_title">REGISTRO DE TERREMOTOS</string>
+    <string name="et_year">Año</string>
+    <string name="btn_clear_dialog">Borrar campos</string>
 </resources>
