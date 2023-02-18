@@ -48,7 +48,7 @@
                 android:textColor="@color/black" />
 
             <ImageButton
-                android:id="@+id/ImgBtnSearch"
+                android:id="@+id/ibtn_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/loupe"

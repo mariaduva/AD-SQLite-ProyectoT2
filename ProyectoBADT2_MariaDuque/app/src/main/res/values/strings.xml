@@ -12,4 +12,8 @@
     <string name="tv_date_it">● Fecha: %1$s</string>
     <string name="tv_coordinates_epi_it">● Coordenadas Epicentro: %1$s</string>
     <string name="tv_deaths_it">● Muertes: %1$d</string>
+    <string name="title_dialog">Filtrar terromotos</string>
+    <string name="btn_aceptar">Aceptar</string>
+    <string name="btn_cancelar">Cancelar</string>
+    <string name="error_invalid_year">Año no válido</string>
 </resources>
