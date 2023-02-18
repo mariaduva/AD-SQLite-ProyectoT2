@@ -74,6 +74,6 @@
             android:text=" ● Muertes: 1.655"
             android:textSize="@dimen/text_size"/>
 
-
-
+    </LinearLayout>
+    
 </LinearLayout>
