@@ -3,4 +3,7 @@
     <dimen name="margin">20dp</dimen>
     <dimen name="margin_ll">25dp</dimen>
     <dimen name="text_size">18sp</dimen>
+    <dimen name="text_size_title_rv">20sp</dimen>
+    <dimen name="margin_item">5dp</dimen>
+    <dimen name="text_size_title_mg_rv">24sp</dimen>
 </resources>
