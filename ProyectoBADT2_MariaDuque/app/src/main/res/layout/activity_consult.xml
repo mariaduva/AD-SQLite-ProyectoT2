@@ -4,6 +4,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/margin"
     tools:context=".ConsultActivity">
+
+    <LinearLayout
+        android:id="@+id/llButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/btn_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/filter"
+            android:background="@drawable/round_button"
+            android:text="@string/btn_filter"
+            android:layout_weight="2"
+            android:textColor="@color/black"
+            android:textAlignment="textStart"/>
+
+        <ImageButton
+            android:id="@+id/ImgBtnSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/loupe"
+            android:backgroundTint="@color/white"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvFilters"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin"
+        app:layout_constraintTop_toBottomOf="@id/llButtons"
+        android:text="@string/tv_slct_filters"
+        android:textSize="@dimen/text_size"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvEarthquakes"
+        android:layout_marginTop="@dimen/margin"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvFilters"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
