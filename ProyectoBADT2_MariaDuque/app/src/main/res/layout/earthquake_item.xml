@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/lato"
-            android:text=" ● Lugar: Valdivia, Región de los Ríos"
+            android:text="@string/tv_place_it"
             android:textSize="@dimen/text_size"/>
 
         <TextView
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/lato"
-            android:text=" ● Fecha: 22/05/1960"
+            android:text="@string/tv_date_it"
             android:textSize="@dimen/text_size"/>
 
         <TextView
@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/lato"
-            android:text=" ● Coordenadas Epicentro: 39.2°S, 73.1°W"
+            android:text="@string/tv_coordinates_epi_it"
             android:textSize="@dimen/text_size"/>
 
         <TextView
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/lato"
-            android:text=" ● Muertes: 1.655"
+            android:text="@string/tv_deaths_it"
             android:textSize="@dimen/text_size"/>
 
     </LinearLayout>

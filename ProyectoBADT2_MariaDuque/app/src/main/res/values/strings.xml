@@ -7,5 +7,9 @@
     <string name="tv_slct_filters">Filtros:</string>
     <string name="tv_consult_title">REGISTRO DE TERREMOTOS</string>
     <string name="et_year">Año</string>
-    <string name="btn_clear_dialog">Borrar campos</string>
+    <string name="btn_clear_dialog">Borrar filtros</string>
+    <string name="tv_place_it">● Lugar: %1$s</string>
+    <string name="tv_date_it">● Fecha: %1$s</string>
+    <string name="tv_coordinates_epi_it">● Coordenadas Epicentro: %1$s</string>
+    <string name="tv_deaths_it">● Muertes: %1$d</string>
 </resources>
