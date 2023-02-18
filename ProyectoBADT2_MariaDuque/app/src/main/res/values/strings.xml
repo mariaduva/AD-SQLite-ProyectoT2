@@ -1,8 +1,9 @@
 <resources>
-    <string name="app_name">ProyectoBADT2_MaríaDuque</string>
+    <string name="app_name">Registro de terremotos</string>
     <string name="btn_consult_earthquake">Consultar registro</string>
     <string name="intro">El interes por lo terremotos se remonta a más de 3.000 años en la antigua China.\n\n Sin embargo no fue hasta finales del siglo XVII cuando comenzaron a recopilarse datos de manera sistemática por algunos estudiosos.</string>
     <string name="title">TERREMOTOS</string>
     <string name="btn_filter">Filtrar</string>
     <string name="tv_slct_filters">Filtros:</string>
+    <string name="tv_consult_title">REGISTRO DE TERREMOTOS</string>
 </resources>
