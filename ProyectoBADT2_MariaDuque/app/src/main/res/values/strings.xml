@@ -16,4 +16,5 @@
     <string name="btn_aceptar">Aceptar</string>
     <string name="btn_cancelar">Cancelar</string>
     <string name="error_invalid_year">Año no válido</string>
+    <string name="confirm_exit">¿Seguro que quieres salir?</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.proyectobadt2_maraduque;
+package com.example.proyectobadt2_maraduque.dialog;
 
 import java.util.regex.Pattern;
 
@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
+import com.example.proyectobadt2_maraduque.R;
 import com.google.android.material.snackbar.Snackbar;
 
 public class FilterDialog extends DialogFragment {
@@ -61,11 +62,14 @@ public class FilterDialog extends DialogFragment {
                         Pattern regex = Pattern.compile(VALIDTE_YEAR);
 
                         // TODO: Cargar los spinner con los datos de la base de datos
-                        //String month, country;
+                        String month, country;
+                        month = "Enero";
+                        country = "España";
 
                         int year = Integer.parseInt(etYear.getText().toString());
                         if (regex.matcher(etYear.getText().toString()).matches() || etYear.getText().toString().isEmpty()){
-                            listener.OnAceptarFilterListener(spnMonth.getSelectedItem().toString(), year,  spnCountry.getSelectedItem().toString());
+                            //listener.OnAceptarFilterListener(spnMonth.getSelectedItem().toString(), year,  spnCountry.getSelectedItem().toString());
+                            listener.OnAceptarFilterListener(month, year, country);
                             dialogInterface.dismiss();
                         } else {
                             Snackbar.make(btn, R.string.error_invalid_year, Snackbar.LENGTH_LONG).show();
@@ -84,7 +88,7 @@ public class FilterDialog extends DialogFragment {
             listener = (OnFilterListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnDatosListener");
+                    + " must implement OnSizeListener");
         }
     }
 
