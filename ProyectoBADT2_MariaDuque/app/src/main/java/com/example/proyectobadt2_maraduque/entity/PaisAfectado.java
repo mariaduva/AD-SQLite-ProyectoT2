@@ -1,5 +1,6 @@
 package com.example.proyectobadt2_maraduque.entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
@@ -19,15 +20,17 @@ import androidx.room.PrimaryKey;
 )
 public class PaisAfectado {
 
+    @NonNull
     @ColumnInfo(name = "c_fecha_hora")
     public String fecha;
 
+    @NonNull
     @ColumnInfo(name = "pais")
-    public String país;
+    public String pais;
 
-    public PaisAfectado(String fecha, String país) {
+    public PaisAfectado(String fecha, String pais) {
         this.fecha = fecha;
-        this.país = país;
+        this.pais = pais;
     }
 
 }
