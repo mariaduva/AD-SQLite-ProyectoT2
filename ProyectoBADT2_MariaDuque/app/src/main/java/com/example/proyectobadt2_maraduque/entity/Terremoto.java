@@ -25,15 +25,10 @@ public class Terremoto {
     public String lugar;
 
     @ColumnInfo(name = "muertos")
-    public int muertos;
+    public String muertos;
 
-    public Terremoto(String fecha, String nombre, double magnitud, String coordenadas, String lugar, int muertos) {
-        this.fecha = fecha;
-        this.nombre = nombre;
-        this.magnitud = magnitud;
-        this.coordenadas = coordenadas;
-        this.lugar = lugar;
-        this.muertos = muertos;
+    public Terremoto(String fecha, double magnitud, String nombre, String lugar, String coordenadas, String muertos) {
+
     }
 
 }
