@@ -55,6 +55,7 @@ public class FilterDialog extends DialogFragment {
     //Components
     EditText etYear;
     Spinner spnMonth, spnCountry;
+    Button btnClear;
 
     //DB
     TerremotosDB db;
@@ -68,8 +69,16 @@ public class FilterDialog extends DialogFragment {
 
         etYear = v.findViewById(R.id.etYear);
         spnMonth = v.findViewById(R.id.spnMonth);
-        spnMonth.setPrompt("Mes");
         spnCountry = v.findViewById(R.id.spnCountry);
+        btnClear = v.findViewById(R.id.btnClear);
+        btnClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                etYear.setText("");
+                spnMonth.setSelection(0);
+                spnCountry.setSelection(0);
+            }
+        });
 
         adapterMonth = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, MONTHS);
         spnMonth.setAdapter(adapterMonth);
