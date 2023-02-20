@@ -1,6 +1,8 @@
 package com.example.proyectobadt2_maraduque.dialog;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -20,7 +22,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
+import com.example.proyectobadt2_maraduque.ConsultActivity;
 import com.example.proyectobadt2_maraduque.R;
+import com.example.proyectobadt2_maraduque.dao.PaisesDao;
+import com.example.proyectobadt2_maraduque.db.TerremotosDB;
+import com.example.proyectobadt2_maraduque.entity.PaisAfectado;
+import com.example.proyectobadt2_maraduque.entity.Terremoto;
 import com.google.android.material.snackbar.Snackbar;
 
 public class FilterDialog extends DialogFragment {
@@ -41,14 +48,17 @@ public class FilterDialog extends DialogFragment {
         add("Noviembre");
         add("Diciembre");
     }};
-
-    private static final ArrayList<String> COUNTRIES = new ArrayList<String>() {{}};
-
+    ArrayList<String> countries;
+    ArrayAdapter adapterMonth, adapterCountry;
     OnFilterListener listener;
+
+    //Components
     EditText etYear;
     Spinner spnMonth, spnCountry;
 
-    ArrayAdapter adapterMonth, adapterCountry;
+    //DB
+    TerremotosDB db;
+    PaisesDao pDao;
 
     @NonNull
     @Override
@@ -64,7 +74,12 @@ public class FilterDialog extends DialogFragment {
         adapterMonth = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, MONTHS);
         spnMonth.setAdapter(adapterMonth);
 
-
+        db = TerremotosDB.getDatabase(FilterDialog.this.getContext());
+        pDao = db.paisesDao();
+        countries = removeAndSort((ArrayList<String>) pDao.getAllCountries());
+        countries.add(0, "Ninguno");
+        adapterCountry = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, countries);
+        spnCountry.setAdapter(adapterCountry);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setView(v);
@@ -103,6 +118,13 @@ public class FilterDialog extends DialogFragment {
         return ad;
     }
 
+    private ArrayList<String> removeAndSort(ArrayList<String> allCountries) {
+        HashSet<String> set = new HashSet<>(allCountries);
+        ArrayList<String> sortedCountries = new ArrayList<>(set);
+        Collections.sort(sortedCountries);
+        return sortedCountries;
+    }
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -121,5 +143,4 @@ public class FilterDialog extends DialogFragment {
         }
         super.onDetach();
     }
-
 }

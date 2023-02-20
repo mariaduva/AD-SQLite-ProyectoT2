@@ -47,7 +47,7 @@ public class ConsultActivity extends AppCompatActivity implements View.OnClickLi
         btnFilter.setOnClickListener(this);
         btnSearch.setOnClickListener(this);
 
-        //loadDB();
+        loadDB();
 
     }
 

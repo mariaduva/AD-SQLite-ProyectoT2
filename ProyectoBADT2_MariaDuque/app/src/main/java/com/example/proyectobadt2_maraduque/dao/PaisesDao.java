@@ -7,12 +7,14 @@ import androidx.room.Query;
 import com.example.proyectobadt2_maraduque.entity.PaisAfectado;
 
 import java.util.List;
-
 @Dao
 public interface PaisesDao {
 
     @Query("SELECT * FROM PAISES_AFECTADOS")
     public List<PaisAfectado> getAll();
+
+    @Query("SELECT pais FROM PAISES_AFECTADOS")
+    public List<String> getAllCountries();
 
     @Insert
     public long insert(PaisAfectado paisAfectado);
