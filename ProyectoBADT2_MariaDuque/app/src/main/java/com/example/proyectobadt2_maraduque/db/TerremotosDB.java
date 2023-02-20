@@ -15,7 +15,7 @@ import com.example.proyectobadt2_maraduque.entity.Terremoto;
 public abstract class TerremotosDB extends RoomDatabase {
 
     public abstract TerremotoDao terremotoDao();
-    public abstract PaisesDao paisAfectadoDao();
+    public abstract PaisesDao paisesDao();
 
     private static TerremotosDB terremotoDB;
 
