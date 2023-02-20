@@ -2,6 +2,8 @@ package com.example.proyectobadt2_maraduque;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -19,6 +21,7 @@ import com.example.proyectobadt2_maraduque.dialog.FilterDialog;
 import com.example.proyectobadt2_maraduque.dialog.OnFilterListener;
 import com.example.proyectobadt2_maraduque.entity.PaisAfectado;
 import com.example.proyectobadt2_maraduque.entity.Terremoto;
+import com.example.proyectobadt2_maraduque.rvutil.EarthquakeAdapter;
 
 import java.util.ArrayList;
 
@@ -27,9 +30,16 @@ public class ConsultActivity extends AppCompatActivity implements View.OnClickLi
     public static int year = 0;
     public static String month = "Ninguno";
     public static String country = "Ninguno";
+
+    //Components
     Button btnFilter;
     ImageButton btnSearch;
     TextView tvFilters;
+
+    //Recycler View
+    RecyclerView rv;
+    LinearLayoutManager llm;
+    EarthquakeAdapter adapter;
 
     //DB
     TerremotosDB db;
@@ -43,6 +53,8 @@ public class ConsultActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consult);
 
+        rv = findViewById(R.id.rvEarthquakes);
+
         btnFilter = findViewById(R.id.btn_filter);
         btnSearch = findViewById(R.id.ibtn_search);
         tvFilters = findViewById(R.id.tvFiltersSlct);
@@ -53,6 +65,17 @@ public class ConsultActivity extends AppCompatActivity implements View.OnClickLi
         loadDB();
 
         updateFilters();
+
+        loadRV();
+    }
+
+    private void loadRV() {
+        llm = new LinearLayoutManager(this);
+        adapter = new EarthquakeAdapter(earthquakes);
+
+        rv.setLayoutManager(llm);
+        rv.setHasFixedSize(true);
+        rv.setAdapter(adapter);
     }
 
     private void updateFilters() {

@@ -38,5 +38,4 @@ public class Terremoto {
         this.coordenadas = coordenadas;
         this.muertos = muertos;
     }
-
 }
