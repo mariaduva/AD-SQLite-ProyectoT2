@@ -1,5 +1,7 @@
 package com.example.proyectobadt2_maraduque.dialog;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import android.app.Dialog;
@@ -7,6 +9,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -19,13 +23,29 @@ import androidx.fragment.app.DialogFragment;
 import com.example.proyectobadt2_maraduque.R;
 import com.google.android.material.snackbar.Snackbar;
 
-public class FilterDialog extends DialogFragment {
+public class FilterDialog extends DialogFragment implements AdapterView.OnItemSelectedListener {
 
     private static final String VALIDTE_YEAR = "^[12][0-9]{3}$";
+    private static final ArrayList<String> MONTHS = new ArrayList<String>() {{
+        add("Enero");
+        add("Febrero");
+        add("Marzo");
+        add("Abril");
+        add("Mayo");
+        add("Junio");
+        add("Julio");
+        add("Agosto");
+        add("Septiembre");
+        add("Octubre");
+        add("Noviembre");
+        add("Diciembre");
+    }};
 
     OnFilterListener listener;
     EditText etYear;
     Spinner spnMonth, spnCountry;
+
+    ArrayAdapter adapterMonth, adapterCountry;
 
     @NonNull
     @Override
@@ -35,7 +55,11 @@ public class FilterDialog extends DialogFragment {
 
         etYear = v.findViewById(R.id.etYear);
         spnMonth = v.findViewById(R.id.spnMonth);
+        spnMonth.setPrompt("Mes");
         spnCountry = v.findViewById(R.id.spnCountry);
+
+        adapterMonth = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, MONTHS);
+        spnMonth.setAdapter(adapterMonth);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setView(v);
@@ -98,5 +122,15 @@ public class FilterDialog extends DialogFragment {
             listener = null;
         }
         super.onDetach();
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }
