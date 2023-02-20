@@ -48,6 +48,8 @@ public class FilterDialog extends DialogFragment {
         add("Noviembre");
         add("Diciembre");
     }};
+
+    int year = 0;
     ArrayList<String> countries;
     ArrayAdapter adapterMonth, adapterCountry;
     OnFilterListener listener;
@@ -71,6 +73,7 @@ public class FilterDialog extends DialogFragment {
         spnMonth = v.findViewById(R.id.spnMonth);
         spnCountry = v.findViewById(R.id.spnCountry);
         btnClear = v.findViewById(R.id.btnClear);
+
         btnClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,6 +92,10 @@ public class FilterDialog extends DialogFragment {
         countries.add(0, "Ninguno");
         adapterCountry = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, countries);
         spnCountry.setAdapter(adapterCountry);
+
+        etYear.setText(ConsultActivity.year == 0 ? "" : String.valueOf(ConsultActivity.year));
+        spnMonth.setSelection(getPosition(ConsultActivity.month, MONTHS));
+        spnCountry.setSelection(getPosition(ConsultActivity.country, countries));
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setView(v);
@@ -112,19 +119,32 @@ public class FilterDialog extends DialogFragment {
                 btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        int year = Integer.parseInt(etYear.getText().toString());
-
-                        if (etYear.getText().toString().matches(VALIDTE_YEAR) || etYear.getText().toString().isEmpty()){
+                        if (etYear.getText().toString().isEmpty()){
+                            year = 0;
                             listener.OnAceptarFilterListener(spnMonth.getSelectedItem().toString(), year, spnCountry.getSelectedItem().toString());
                             dialogInterface.dismiss();
                         } else {
-                            Snackbar.make(btn, R.string.error_invalid_year, Snackbar.LENGTH_LONG).show();
+                            year = Integer.parseInt(etYear.getText().toString());
+                            if (!etYear.getText().toString().matches(VALIDTE_YEAR)){
+                                Snackbar.make(btn, R.string.error_invalid_year, Snackbar.LENGTH_LONG).show();
+                            }
                         }
+                        listener.OnAceptarFilterListener(spnMonth.getSelectedItem().toString(), year, spnCountry.getSelectedItem().toString());
+                        dialogInterface.dismiss();
                     }
                 });
             }
         });
         return ad;
+    }
+
+    private int getPosition(String month, ArrayList<String> list) {
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).equals(month)) {
+                return i;
+            }
+        }
+        return 0;
     }
 
     private ArrayList<String> removeAndSort(ArrayList<String> allCountries) {
