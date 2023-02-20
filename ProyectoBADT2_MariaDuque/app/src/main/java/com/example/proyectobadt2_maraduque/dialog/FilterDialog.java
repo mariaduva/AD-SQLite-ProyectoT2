@@ -23,10 +23,11 @@ import androidx.fragment.app.DialogFragment;
 import com.example.proyectobadt2_maraduque.R;
 import com.google.android.material.snackbar.Snackbar;
 
-public class FilterDialog extends DialogFragment implements AdapterView.OnItemSelectedListener {
+public class FilterDialog extends DialogFragment {
 
     private static final String VALIDTE_YEAR = "^[12][0-9]{3}$";
     private static final ArrayList<String> MONTHS = new ArrayList<String>() {{
+        add("Ninguno");
         add("Enero");
         add("Febrero");
         add("Marzo");
@@ -40,6 +41,8 @@ public class FilterDialog extends DialogFragment implements AdapterView.OnItemSe
         add("Noviembre");
         add("Diciembre");
     }};
+
+    private static final ArrayList<String> COUNTRIES = new ArrayList<String>() {{}};
 
     OnFilterListener listener;
     EditText etYear;
@@ -60,6 +63,8 @@ public class FilterDialog extends DialogFragment implements AdapterView.OnItemSe
 
         adapterMonth = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, MONTHS);
         spnMonth.setAdapter(adapterMonth);
+
+
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setView(v);
@@ -83,17 +88,10 @@ public class FilterDialog extends DialogFragment implements AdapterView.OnItemSe
                 btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Pattern regex = Pattern.compile(VALIDTE_YEAR);
-
-                        // TODO: Cargar los spinner con los datos de la base de datos
-                        String month, country;
-                        month = "Enero";
-                        country = "España";
-
                         int year = Integer.parseInt(etYear.getText().toString());
-                        if (regex.matcher(etYear.getText().toString()).matches() || etYear.getText().toString().isEmpty()){
-                            //listener.OnAceptarFilterListener(spnMonth.getSelectedItem().toString(), year,  spnCountry.getSelectedItem().toString());
-                            listener.OnAceptarFilterListener(month, year, country);
+
+                        if (etYear.getText().toString().matches(VALIDTE_YEAR) || etYear.getText().toString().isEmpty()){
+                            listener.OnAceptarFilterListener(spnMonth.getSelectedItem().toString(), year, spnCountry.getSelectedItem().toString());
                             dialogInterface.dismiss();
                         } else {
                             Snackbar.make(btn, R.string.error_invalid_year, Snackbar.LENGTH_LONG).show();
@@ -124,13 +122,4 @@ public class FilterDialog extends DialogFragment implements AdapterView.OnItemSe
         super.onDetach();
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
 }
