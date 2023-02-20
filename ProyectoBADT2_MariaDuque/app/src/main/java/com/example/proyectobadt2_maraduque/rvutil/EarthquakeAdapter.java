@@ -1,5 +1,7 @@
 package com.example.proyectobadt2_maraduque.rvutil;
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +33,7 @@ public class EarthquakeAdapter extends RecyclerView.Adapter<EarthquakeAdapter.Ea
 
     @Override
     public void onBindViewHolder(@NonNull EarthquakeVH holder, int position) {
-        holder.bindData(data.get(position));
+        holder.bindData(holder.itemView.getContext(), data.get(position));
     }
 
     @Override
@@ -52,13 +54,14 @@ public class EarthquakeAdapter extends RecyclerView.Adapter<EarthquakeAdapter.Ea
             tvDeaths = itemView.findViewById(R.id.tvDeaths);
         }
 
-        public void bindData(Terremoto earthquake){
+        public void bindData(Context context, Terremoto earthquake) {
             tvName.setText(earthquake.nombre);
             tvMagnitude.setText(String.valueOf(earthquake.magnitud));
-            tvPlace.setText(earthquake.lugar);
-            tvDate.setText(earthquake.fecha);
-            tvCoordinates.setText(earthquake.coordenadas);
-            tvDeaths.setText(earthquake.muertos);
+            tvPlace.setText(String.format(context.getString(R.string.tv_place_it), earthquake.lugar));
+            tvDate.setText(String.format(context.getString(R.string.tv_date_it), earthquake.fecha));
+            tvCoordinates.setText(String.format(context.getString(R.string.tv_coordinates_epi_it), earthquake.coordenadas));
+            tvDeaths.setText(String.format(context.getString(R.string.tv_deaths_it), earthquake.muertos));
         }
+
     }
 }
