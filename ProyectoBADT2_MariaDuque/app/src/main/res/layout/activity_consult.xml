@@ -1,76 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="@dimen/margin"
     tools:context=".ConsultActivity">
 
+    <TextView
+        android:id="@+id/tvConsultTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_consult_title"
+        android:textSize="@dimen/text_size"
+        android:fontFamily="@font/lato_bold" />
 
     <LinearLayout
-        android:id="@+id/llConsult"
+        android:id="@+id/llButtons"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/margin">
 
-        <TextView
-            android:id="@+id/tvConsultTitle"
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/btn_filter"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tv_consult_title"
-            android:textSize="@dimen/text_size"
+            android:layout_weight="2"
+            android:background="@drawable/round_button"
+            android:drawableLeft="@drawable/filter"
             android:fontFamily="@font/lato_bold"
+            android:text="@string/btn_filter"
+            android:textAlignment="textStart"
+            android:textColor="@color/black" />
 
-            />
-
-        <LinearLayout
-            android:id="@+id/llButtons"
-            android:layout_width="match_parent"
+        <ImageButton
+            android:id="@+id/ibtn_search"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/margin">
-
-            <Button
-                android:id="@+id/btn_filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:background="@drawable/round_button"
-                android:drawableLeft="@drawable/filter"
-                android:fontFamily="@font/lato_bold"
-                android:text="@string/btn_filter"
-                android:textAlignment="textStart"
-                android:textColor="@color/black" />
-
-            <ImageButton
-                android:id="@+id/ibtn_search"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/loupe"
-                android:backgroundTint="@color/white"/>
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/tvFilters"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin"
-            android:fontFamily="@font/lato_light_italic"
-            android:text="@string/tv_slct_filters"
-            android:textSize="@dimen/text_size" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvEarthquakes"
-            android:layout_marginTop="@dimen/margin"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:src="@drawable/loupe"
+            android:backgroundTint="@color/white"/>
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/tvFilters"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin"
+        android:fontFamily="@font/lato_light_italic"
+        android:text="@string/tv_slct_filters"
+        android:textSize="@dimen/text_size" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvEarthquakes"
+        android:layout_marginTop="@dimen/margin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

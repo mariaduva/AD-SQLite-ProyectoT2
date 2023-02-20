@@ -12,7 +12,7 @@ import com.example.proyectobadt2_maraduque.entity.PaisAfectado;
 import com.example.proyectobadt2_maraduque.entity.Terremoto;
 
 @Database(entities = {Terremoto.class, PaisAfectado.class}, version = 1)
-public  abstract class TerremotosDB extends RoomDatabase {
+public abstract class TerremotosDB extends RoomDatabase {
 
     public abstract TerremotoDao terremotoDao();
     public abstract PaisesDao paisAfectadoDao();

@@ -17,4 +17,7 @@
     <string name="btn_cancelar">Cancelar</string>
     <string name="error_invalid_year">Año no válido</string>
     <string name="confirm_exit">¿Seguro que quieres salir?</string>
+    <string name="et_month_d">Mes:</string>
+    <string name="et_year_d">Año:</string>
+    <string name="et_country_d">País:</string>
 </resources>
