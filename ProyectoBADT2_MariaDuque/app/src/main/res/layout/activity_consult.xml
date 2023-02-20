@@ -44,14 +44,31 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tvFilters"
+    <LinearLayout
+        android:id="@+id/llFilters"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin"
-        android:fontFamily="@font/lato_light_italic"
-        android:text="@string/tv_slct_filters"
-        android:textSize="@dimen/text_size" />
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/margin">
+
+        <TextView
+            android:id="@+id/tvFilters"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:fontFamily="@font/lato_light_italic"
+            android:text="@string/tv_slct_filters"
+            android:textSize="@dimen/text_size"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/tvFiltersSlct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lato_light_italic"
+            android:layout_weight="1"
+            android:textSize="@dimen/text_size"/>
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvEarthquakes"

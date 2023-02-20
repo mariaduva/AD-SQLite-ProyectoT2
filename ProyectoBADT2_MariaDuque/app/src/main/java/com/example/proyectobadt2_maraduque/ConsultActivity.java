@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.example.proyectobadt2_maraduque.dao.PaisesDao;
 import com.example.proyectobadt2_maraduque.dao.TerremotoDao;
@@ -23,11 +24,12 @@ import java.util.ArrayList;
 
 public class ConsultActivity extends AppCompatActivity implements View.OnClickListener, OnFilterListener {
 
-    private int year;
-    private String month;
-    private String country;
+    public static int year = 0;
+    public static String month = "Ninguno";
+    public static String country = "Ninguno";
     Button btnFilter;
     ImageButton btnSearch;
+    TextView tvFilters;
 
     //DB
     TerremotosDB db;
@@ -43,12 +45,42 @@ public class ConsultActivity extends AppCompatActivity implements View.OnClickLi
 
         btnFilter = findViewById(R.id.btn_filter);
         btnSearch = findViewById(R.id.ibtn_search);
+        tvFilters = findViewById(R.id.tvFiltersSlct);
 
         btnFilter.setOnClickListener(this);
         btnSearch.setOnClickListener(this);
 
         loadDB();
 
+        updateFilters();
+    }
+
+    private void updateFilters() {
+        String filters = "";
+
+        if (!month.equals("Ninguno")) {
+            filters += "Mes: " + month;
+        }
+
+        if (!country.equals("Ninguno")) {
+            if (!filters.isEmpty()) {
+                filters += " ";
+            }
+            filters += "País: " + country;
+        }
+
+        if (year != 0) {
+            if (!filters.isEmpty()) {
+                filters += " ";
+            }
+            filters += "Año: " + year;
+        }
+
+        if (filters.isEmpty()) {
+            filters = "Ninguno";
+        }
+
+        tvFilters.setText(filters);
     }
 
     private void loadDB() {
@@ -93,5 +125,6 @@ public class ConsultActivity extends AppCompatActivity implements View.OnClickLi
         month = fMonth;
         year = fYear;
         country = fCountry;
+        updateFilters();
     }
 }
