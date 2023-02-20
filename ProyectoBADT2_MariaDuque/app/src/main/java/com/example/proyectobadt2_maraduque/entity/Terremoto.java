@@ -6,7 +6,8 @@ import androidx.room.Entity;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "TERREMOTOS",
+@Entity(
+        tableName = "TERREMOTOS",
         indices = {@Index(value = {"nombre_dis"}, unique = true)})
 public class Terremoto {
     @PrimaryKey
