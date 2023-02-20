@@ -16,6 +16,9 @@ public interface PaisesDao {
     @Query("SELECT pais FROM PAISES_AFECTADOS")
     public List<String> getAllCountries();
 
+    @Query("SELECT * FROM PAISES_AFECTADOS WHERE pais = :pais")
+    public List<PaisAfectado> selectByCountry(String pais);
+
     @Insert
     public long insert(PaisAfectado paisAfectado);
 }

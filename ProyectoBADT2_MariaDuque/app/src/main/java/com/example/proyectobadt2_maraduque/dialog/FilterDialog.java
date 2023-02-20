@@ -34,19 +34,19 @@ public class FilterDialog extends DialogFragment {
 
     private static final String VALIDTE_YEAR = "^[12][0-9]{3}$";
     private static final ArrayList<String> MONTHS = new ArrayList<String>() {{
-        add("Ninguno");
-        add("Enero");
-        add("Febrero");
-        add("Marzo");
-        add("Abril");
-        add("Mayo");
-        add("Junio");
-        add("Julio");
-        add("Agosto");
-        add("Septiembre");
-        add("Octubre");
-        add("Noviembre");
-        add("Diciembre");
+        add("ninguno");
+        add("enero");
+        add("febrero");
+        add("marzo");
+        add("abril");
+        add("mayo");
+        add("junio");
+        add("julio");
+        add("agosto");
+        add("septiembre");
+        add("octubre");
+        add("noviembre");
+        add("diciembre");
     }};
 
     int year = 0;

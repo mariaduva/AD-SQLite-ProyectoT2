@@ -136,6 +136,7 @@ public class ConsultActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void search() {
+
     }
 
     private void filter() {
