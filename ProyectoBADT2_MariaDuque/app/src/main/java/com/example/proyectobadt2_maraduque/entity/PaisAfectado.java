@@ -19,7 +19,6 @@ import androidx.room.PrimaryKey;
         }
 )
 public class PaisAfectado {
-
     @NonNull
     @ColumnInfo(name = "c_fecha_hora")
     public String fecha;
@@ -32,5 +31,4 @@ public class PaisAfectado {
         this.fecha = fecha;
         this.pais = pais;
     }
-
 }

@@ -7,7 +7,6 @@
     android:padding="@dimen/margin"
     tools:context=".MainActivity">
 
-
     <LinearLayout
         android:id="@+id/ll_main"
         android:layout_width="wrap_content"
@@ -23,21 +22,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_ll"
-            android:fontFamily="@font/noto_sans_bold"
-            android:gravity="center"
             android:text="@string/title"
-            android:textSize="32sp"/>
+            android:textSize="32sp"
+            android:textAlignment="center"
+            android:fontFamily="@font/noto_sans_bold" />
 
         <TextView
             android:id="@+id/tv_intro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_ll"
-            android:fontFamily="@font/lato_bold"
             android:text="@string/intro"
-            android:textAlignment="center"
             android:textSize="20sp"
-            android:textStyle="bold"/>
+            android:textAlignment="center"
+            android:fontFamily="@font/lato_bold"/>
 
         <Button
             android:id="@+id/btn_cnslt_earthquake"
@@ -47,7 +45,7 @@
             android:layout_marginBottom="@dimen/margin_ll"
             android:background="@drawable/round_button"
             android:text="@string/btn_consult_earthquake"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
     </LinearLayout>
 

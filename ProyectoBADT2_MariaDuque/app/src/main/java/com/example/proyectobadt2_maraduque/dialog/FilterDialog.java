@@ -31,7 +31,6 @@ import com.example.proyectobadt2_maraduque.entity.Terremoto;
 import com.google.android.material.snackbar.Snackbar;
 
 public class FilterDialog extends DialogFragment {
-
     private static final String VALIDTE_YEAR = "^[12][0-9]{3}$";
     private static final ArrayList<String> MONTHS = new ArrayList<String>() {{
         add("Ninguno");

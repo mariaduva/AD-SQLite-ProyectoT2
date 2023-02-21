@@ -115,16 +115,16 @@ public class ConsultActivity extends AppCompatActivity implements View.OnClickLi
             for (Terremoto t : new ListadoTerremotos().getListTerremotos()) {
                 tDao.insert(t);
             }
+            earthquakes = (ArrayList<Terremoto>) tDao.getAll();
         }
+
+        loadRV(earthquakes);
 
         if(affectedCountries.size() == 0){
             for (PaisAfectado p : new ListadoPaisesAf().getListadoPaisesAf()) {
                 pDao.insert(p);
             }
         }
-        earthquakes = (ArrayList<Terremoto>) tDao.getAll();
-        affectedCountries = (ArrayList<PaisAfectado>) pDao.getAll();
-        loadRV(earthquakes);
     }
 
     @Override

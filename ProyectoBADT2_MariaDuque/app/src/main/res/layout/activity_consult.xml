@@ -20,8 +20,9 @@
         android:id="@+id/llButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin"
         android:orientation="horizontal"
-        android:layout_marginTop="@dimen/margin">
+        >
 
         <Button
             android:id="@+id/btn_filter"
@@ -30,17 +31,17 @@
             android:layout_weight="2"
             android:background="@drawable/round_button"
             android:drawableLeft="@drawable/filter"
-            android:fontFamily="@font/lato_bold"
             android:text="@string/btn_filter"
             android:textAlignment="textStart"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:fontFamily="@font/lato_bold"/>
 
         <ImageButton
             android:id="@+id/ibtn_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/loupe"
-            android:backgroundTint="@color/white"/>
+            android:backgroundTint="@color/transparent"/>
 
     </LinearLayout>
 
@@ -48,25 +49,24 @@
         android:id="@+id/llFilters"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="@dimen/margin">
+        android:layout_marginTop="@dimen/margin"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/tvFilters"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="5"
-            android:fontFamily="@font/lato_light_italic"
             android:text="@string/tv_slct_filters"
             android:textSize="@dimen/text_size"
-            android:textStyle="bold" />
+            android:fontFamily="@font/lato_bold_italic"/>
         <TextView
             android:id="@+id/tvFiltersSlct"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/lato_light_italic"
             android:layout_weight="1"
-            android:textSize="@dimen/text_size"/>
+            android:textSize="@dimen/text_size"
+            android:fontFamily="@font/lato_light_italic"/>
 
     </LinearLayout>
 
