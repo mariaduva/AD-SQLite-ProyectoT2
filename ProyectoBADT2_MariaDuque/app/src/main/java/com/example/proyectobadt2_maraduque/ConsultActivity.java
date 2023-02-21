@@ -1,11 +1,9 @@
 package com.example.proyectobadt2_maraduque;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -65,13 +63,11 @@ public class ConsultActivity extends AppCompatActivity implements View.OnClickLi
         loadDB();
 
         updateFilters();
-
-        loadRV();
     }
 
-    private void loadRV() {
+    private void loadRV(ArrayList<Terremoto> earthquakes) {
         llm = new LinearLayoutManager(this);
-        adapter = new EarthquakeAdapter(earthquakes);
+        adapter = new EarthquakeAdapter(this.earthquakes);
 
         rv.setLayoutManager(llm);
         rv.setHasFixedSize(true);
@@ -124,6 +120,9 @@ public class ConsultActivity extends AppCompatActivity implements View.OnClickLi
                 pDao.insert(p);
             }
         }
+        earthquakes = (ArrayList<Terremoto>) tDao.getAll();
+        affectedCountries = (ArrayList<PaisAfectado>) pDao.getAll();
+        loadRV(earthquakes);
     }
 
     @Override
@@ -136,7 +135,7 @@ public class ConsultActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void search() {
-
+        
     }
 
     private void filter() {

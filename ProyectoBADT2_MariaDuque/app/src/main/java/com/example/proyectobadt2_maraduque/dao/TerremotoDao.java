@@ -13,6 +13,7 @@ public interface TerremotoDao {
     @Query("SELECT * FROM TERREMOTOS")
     public List<Terremoto> getAll();
 
+
     /*
     María del futuro no se si te sirva esto, pero lo dejo por si acaso
     @Query("SELECT * FROM TERREMOTOS WHERE SUBSTR(fecha_hora, 1, 10) = :fecha_hora")
