@@ -3,15 +3,12 @@ package com.example.proyectobadt2_maraduque.dialog;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
-import java.util.regex.Pattern;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,10 +21,8 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.proyectobadt2_maraduque.ConsultActivity;
 import com.example.proyectobadt2_maraduque.R;
-import com.example.proyectobadt2_maraduque.dao.PaisesDao;
-import com.example.proyectobadt2_maraduque.db.TerremotosDB;
-import com.example.proyectobadt2_maraduque.entity.PaisAfectado;
-import com.example.proyectobadt2_maraduque.entity.Terremoto;
+import com.example.proyectobadt2_maraduque.dao.CountryDao;
+import com.example.proyectobadt2_maraduque.db.EarthquakesDB;
 import com.google.android.material.snackbar.Snackbar;
 
 public class FilterDialog extends DialogFragment {
@@ -59,8 +54,8 @@ public class FilterDialog extends DialogFragment {
     Button btnClear;
 
     //DB
-    TerremotosDB db;
-    PaisesDao pDao;
+    EarthquakesDB db;
+    CountryDao pDao;
 
     @NonNull
     @Override
@@ -85,8 +80,8 @@ public class FilterDialog extends DialogFragment {
         adapterMonth = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, MONTHS);
         spnMonth.setAdapter(adapterMonth);
 
-        db = TerremotosDB.getDatabase(FilterDialog.this.getContext());
-        pDao = db.paisesDao();
+        db = EarthquakesDB.getDatabase(FilterDialog.this.getContext());
+        pDao = db.countryDao();
         countries = removeAndSort((ArrayList<String>) pDao.getAllCountries());
         countries.add(0, "Ninguno");
         adapterCountry = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, countries);

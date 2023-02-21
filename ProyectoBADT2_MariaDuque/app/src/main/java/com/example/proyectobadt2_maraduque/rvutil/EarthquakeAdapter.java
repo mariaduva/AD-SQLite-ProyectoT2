@@ -1,7 +1,6 @@
 package com.example.proyectobadt2_maraduque.rvutil;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,15 +10,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyectobadt2_maraduque.R;
-import com.example.proyectobadt2_maraduque.entity.Terremoto;
+import com.example.proyectobadt2_maraduque.entity.Earthquake;
 
 import java.util.ArrayList;
 
 public class EarthquakeAdapter extends RecyclerView.Adapter<EarthquakeAdapter.EarthquakeVH> {
 
-    private ArrayList<Terremoto> data;
+    private ArrayList<Earthquake> data;
 
-    public EarthquakeAdapter(ArrayList<Terremoto> data){
+    public EarthquakeAdapter(ArrayList<Earthquake> data){
         this.data = data;
     }
 
@@ -54,13 +53,13 @@ public class EarthquakeAdapter extends RecyclerView.Adapter<EarthquakeAdapter.Ea
             tvDeaths = itemView.findViewById(R.id.tvDeaths);
         }
 
-        public void bindData(Context context, Terremoto earthquake) {
-            tvName.setText(earthquake.nombre);
-            tvMagnitude.setText(String.valueOf(earthquake.magnitud));
-            tvPlace.setText(String.format(context.getString(R.string.tv_place_it), earthquake.lugar));
-            tvDate.setText(String.format(context.getString(R.string.tv_date_it), earthquake.fecha.replace("-", " de ")));
-            tvCoordinates.setText(String.format(context.getString(R.string.tv_coordinates_epi_it), earthquake.coordenadas));
-            tvDeaths.setText(String.format(context.getString(R.string.tv_deaths_it), earthquake.muertos));
+        public void bindData(Context context, Earthquake earthquake) {
+            tvName.setText(earthquake.name);
+            tvMagnitude.setText(String.valueOf(earthquake.magnitude));
+            tvPlace.setText(String.format(context.getString(R.string.tv_place_it), earthquake.place));
+            tvDate.setText(String.format(context.getString(R.string.tv_date_it), earthquake.date.replace("-", " de ")));
+            tvCoordinates.setText(String.format(context.getString(R.string.tv_coordinates_epi_it), earthquake.coordinates));
+            tvDeaths.setText(String.format(context.getString(R.string.tv_deaths_it), earthquake.deaths));
         }
     }
 }

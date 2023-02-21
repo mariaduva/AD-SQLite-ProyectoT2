@@ -12,15 +12,15 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.proyectobadt2_maraduque.dao.PaisesDao;
-import com.example.proyectobadt2_maraduque.dao.TerremotoDao;
-import com.example.proyectobadt2_maraduque.data.ListadoPaisesAf;
-import com.example.proyectobadt2_maraduque.data.ListadoTerremotos;
-import com.example.proyectobadt2_maraduque.db.TerremotosDB;
+import com.example.proyectobadt2_maraduque.dao.CountryDao;
+import com.example.proyectobadt2_maraduque.dao.EarthquakeDao;
+import com.example.proyectobadt2_maraduque.data.AfCountryList;
+import com.example.proyectobadt2_maraduque.data.EarthquakeList;
+import com.example.proyectobadt2_maraduque.db.EarthquakesDB;
 import com.example.proyectobadt2_maraduque.dialog.FilterDialog;
 import com.example.proyectobadt2_maraduque.dialog.OnFilterListener;
-import com.example.proyectobadt2_maraduque.entity.PaisAfectado;
-import com.example.proyectobadt2_maraduque.entity.Terremoto;
+import com.example.proyectobadt2_maraduque.entity.AffectedCountry;
+import com.example.proyectobadt2_maraduque.entity.Earthquake;
 import com.example.proyectobadt2_maraduque.rvutil.EarthquakeAdapter;
 
 import java.util.ArrayList;
@@ -42,11 +42,11 @@ public class ConsultActivity extends AppCompatActivity implements View.OnClickLi
     EarthquakeAdapter adapter;
 
     //DB
-    TerremotosDB db;
-    PaisesDao pDao;
-    TerremotoDao tDao;
-    ArrayList<Terremoto> earthquakes;
-    ArrayList<PaisAfectado> affectedCountries;
+    EarthquakesDB db;
+    CountryDao pDao;
+    EarthquakeDao tDao;
+    ArrayList<Earthquake> earthquakes;
+    ArrayList<AffectedCountry> affectedCountries;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +67,7 @@ public class ConsultActivity extends AppCompatActivity implements View.OnClickLi
         updateFilters();
     }
 
-    private void loadRV(ArrayList<Terremoto> earthquakes) {
+    private void loadRV(ArrayList<Earthquake> earthquakes) {
         llm = new LinearLayoutManager(this);
         adapter = new EarthquakeAdapter(this.earthquakes);
 
@@ -105,23 +105,23 @@ public class ConsultActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void loadDB() {
-        db = TerremotosDB.getDatabase(this);
-        pDao = db.paisesDao();
-        tDao = db.terremotoDao();
-        earthquakes = (ArrayList<Terremoto>) tDao.getAll();
-        affectedCountries = (ArrayList<PaisAfectado>) pDao.getAll();
+        db = EarthquakesDB.getDatabase(this);
+        pDao = db.countryDao();
+        tDao = db.earthquakeDao();
+        earthquakes = (ArrayList<Earthquake>) tDao.getAll();
+        affectedCountries = (ArrayList<AffectedCountry>) pDao.getAll();
 
         if(earthquakes.size() == 0){
-            for (Terremoto t : new ListadoTerremotos().getListTerremotos()) {
+            for (Earthquake t : new EarthquakeList().getEarthquakeList()) {
                 tDao.insert(t);
             }
-            earthquakes = (ArrayList<Terremoto>) tDao.getAll();
+            earthquakes = (ArrayList<Earthquake>) tDao.getAll();
         }
 
         loadRV(earthquakes);
 
         if(affectedCountries.size() == 0){
-            for (PaisAfectado p : new ListadoPaisesAf().getListadoPaisesAf()) {
+            for (AffectedCountry p : new AfCountryList().getAfCountriesList()) {
                 pDao.insert(p);
             }
         }
@@ -140,13 +140,13 @@ public class ConsultActivity extends AppCompatActivity implements View.OnClickLi
         String filtersYearMonth = getFiltersYearMonth();
 
         if (filtersYearMonth.equals("%-%-%")) {
-            earthquakes = (ArrayList<Terremoto>) tDao.getAll();
+            earthquakes = (ArrayList<Earthquake>) tDao.getAll();
         } else {
-            earthquakes = (ArrayList<Terremoto>) tDao.selectByMonthYear(filtersYearMonth);
+            earthquakes = (ArrayList<Earthquake>) tDao.selectByMonthYear(filtersYearMonth);
         }
 
         if (!country.equals("Ninguno")) {
-            affectedCountries = (ArrayList<PaisAfectado>) pDao.selectByCountry(country);
+            affectedCountries = (ArrayList<AffectedCountry>) pDao.selectByCountry(country);
             earthquakes = getCoindicences(earthquakes, affectedCountries);
         }
 
@@ -174,11 +174,11 @@ public class ConsultActivity extends AppCompatActivity implements View.OnClickLi
         return filtersYearMonth;
     }
 
-    private ArrayList<Terremoto> getCoindicences(ArrayList<Terremoto> earthquakes, ArrayList<PaisAfectado> affectedCountries) {
-        ArrayList<Terremoto> coincidences = new ArrayList<>();
-        for (Terremoto t : earthquakes) {
-            for (PaisAfectado p : affectedCountries) {
-                if (t.fecha.equals(p.fecha)) {
+    private ArrayList<Earthquake> getCoindicences(ArrayList<Earthquake> earthquakes, ArrayList<AffectedCountry> affectedCountries) {
+        ArrayList<Earthquake> coincidences = new ArrayList<>();
+        for (Earthquake t : earthquakes) {
+            for (AffectedCountry p : affectedCountries) {
+                if (t.date.equals(p.date)) {
                     coincidences.add(t);
                 }
             }
