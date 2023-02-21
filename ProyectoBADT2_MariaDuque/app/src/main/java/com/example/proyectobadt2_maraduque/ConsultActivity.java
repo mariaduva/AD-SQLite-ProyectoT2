@@ -158,6 +158,8 @@ public class ConsultActivity extends AppCompatActivity implements View.OnClickLi
         } else {
             earthquakes = (ArrayList<Terremoto>) tDao.selectByMonthYear(filtersYearMonth);
         }
+
+        loadRV(earthquakes);
     }
 
     private void filter() {

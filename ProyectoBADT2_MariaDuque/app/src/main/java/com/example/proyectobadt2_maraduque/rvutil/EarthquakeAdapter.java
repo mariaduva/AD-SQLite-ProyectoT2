@@ -58,7 +58,7 @@ public class EarthquakeAdapter extends RecyclerView.Adapter<EarthquakeAdapter.Ea
             tvName.setText(earthquake.nombre);
             tvMagnitude.setText(String.valueOf(earthquake.magnitud));
             tvPlace.setText(String.format(context.getString(R.string.tv_place_it), earthquake.lugar));
-            tvDate.setText(String.format(context.getString(R.string.tv_date_it), earthquake.fecha));
+            tvDate.setText(String.format(context.getString(R.string.tv_date_it), earthquake.fecha.replace("-", " de ")));
             tvCoordinates.setText(String.format(context.getString(R.string.tv_coordinates_epi_it), earthquake.coordenadas));
             tvDeaths.setText(String.format(context.getString(R.string.tv_deaths_it), earthquake.muertos));
         }
