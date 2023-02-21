@@ -20,4 +20,5 @@
     <string name="et_month_d">Mes:</string>
     <string name="et_year_d">Año:</string>
     <string name="et_country_d">País:</string>
+    <string name="no_coincidences">No se encontraron coincidencias</string>
 </resources>

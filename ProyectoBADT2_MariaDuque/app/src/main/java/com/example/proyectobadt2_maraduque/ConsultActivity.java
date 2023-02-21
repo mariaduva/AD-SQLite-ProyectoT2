@@ -1,5 +1,6 @@
 package com.example.proyectobadt2_maraduque;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.proyectobadt2_maraduque.dao.PaisesDao;
 import com.example.proyectobadt2_maraduque.dao.TerremotoDao;
@@ -135,11 +137,29 @@ public class ConsultActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void search() {
-        //"%-Feb-2002%" -> Example
-        String filtersYearMonth = "%-";
+        String filtersYearMonth = getFiltersYearMonth();
+
+        if (filtersYearMonth.equals("%-%-%")) {
+            earthquakes = (ArrayList<Terremoto>) tDao.getAll();
+        } else {
+            earthquakes = (ArrayList<Terremoto>) tDao.selectByMonthYear(filtersYearMonth);
+        }
+
         if (!country.equals("Ninguno")) {
             affectedCountries = (ArrayList<PaisAfectado>) pDao.selectByCountry(country);
+            earthquakes = getCoindicences(earthquakes, affectedCountries);
         }
+
+        if (earthquakes.size() == 0) {
+            Toast.makeText(this, R.string.no_coincidences, Toast.LENGTH_SHORT).show();
+        } else {
+            loadRV(earthquakes);
+        }
+    }
+
+    @NonNull
+    private String getFiltersYearMonth() {
+        String filtersYearMonth = "%-";
 
         if(!month.equals("Ninguno")){
             filtersYearMonth += month + "-";
@@ -152,14 +172,19 @@ public class ConsultActivity extends AppCompatActivity implements View.OnClickLi
         } else {
             filtersYearMonth += "%";
         }
+        return filtersYearMonth;
+    }
 
-        if (filtersYearMonth.equals("%-%-%")) {
-            earthquakes = (ArrayList<Terremoto>) tDao.getAll();
-        } else {
-            earthquakes = (ArrayList<Terremoto>) tDao.selectByMonthYear(filtersYearMonth);
+    private ArrayList<Terremoto> getCoindicences(ArrayList<Terremoto> earthquakes, ArrayList<PaisAfectado> affectedCountries) {
+        ArrayList<Terremoto> coincidences = new ArrayList<>();
+        for (Terremoto t : earthquakes) {
+            for (PaisAfectado p : affectedCountries) {
+                if (t.fecha.equals(p.fecha)) {
+                    coincidences.add(t);
+                }
+            }
         }
-
-        loadRV(earthquakes);
+        return coincidences;
     }
 
     private void filter() {
