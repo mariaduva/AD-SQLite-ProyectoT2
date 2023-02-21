@@ -126,10 +126,11 @@ public class FilterDialog extends DialogFragment {
                             year = Integer.parseInt(etYear.getText().toString());
                             if (!etYear.getText().toString().matches(VALIDTE_YEAR)){
                                 Snackbar.make(btn, R.string.error_invalid_year, Snackbar.LENGTH_LONG).show();
+                            } else {
+                                listener.OnAceptarFilterListener(spnMonth.getSelectedItem().toString(), year, spnCountry.getSelectedItem().toString());
+                                dialogInterface.dismiss();
                             }
                         }
-                        listener.OnAceptarFilterListener(spnMonth.getSelectedItem().toString(), year, spnCountry.getSelectedItem().toString());
-                        dialogInterface.dismiss();
                     }
                 });
             }

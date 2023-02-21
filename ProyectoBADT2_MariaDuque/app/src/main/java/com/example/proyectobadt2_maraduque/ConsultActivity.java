@@ -152,9 +152,8 @@ public class ConsultActivity extends AppCompatActivity implements View.OnClickLi
 
         if (earthquakes.size() == 0) {
             Toast.makeText(this, R.string.no_coincidences, Toast.LENGTH_SHORT).show();
-        } else {
-            loadRV(earthquakes);
         }
+        loadRV(earthquakes);
     }
 
     @NonNull
