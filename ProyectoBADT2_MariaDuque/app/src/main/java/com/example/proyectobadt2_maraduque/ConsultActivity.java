@@ -135,7 +135,29 @@ public class ConsultActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void search() {
-        
+        //"%-Feb-2002%" -> Example
+        String filtersYearMonth = "%-";
+        if (!country.equals("Ninguno")) {
+            affectedCountries = (ArrayList<PaisAfectado>) pDao.selectByCountry(country);
+        }
+
+        if(!month.equals("Ninguno")){
+            filtersYearMonth += month + "-";
+        } else {
+            filtersYearMonth += "%-";
+        }
+
+        if(year != 0){
+            filtersYearMonth += year + "%";
+        } else {
+            filtersYearMonth += "%";
+        }
+
+        if (filtersYearMonth.equals("%-%-%")) {
+            earthquakes = (ArrayList<Terremoto>) tDao.getAll();
+        } else {
+            earthquakes = (ArrayList<Terremoto>) tDao.selectByMonthYear(filtersYearMonth);
+        }
     }
 
     private void filter() {
