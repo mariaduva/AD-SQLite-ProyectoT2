@@ -10,7 +10,7 @@ import java.util.List;
 @Dao
 public interface EarthquakeDao {
 
-    @Query("SELECT * FROM EARTHQUAKES")
+    @Query("SELECT * FROM EARTHQUAKES ORDER BY magnitude DESC")
     public List<Earthquake> getAll();
 
     @Query("SELECT * FROM EARTHQUAKES WHERE date_time LIKE :date_time")
