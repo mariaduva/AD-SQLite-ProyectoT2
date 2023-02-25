@@ -27,6 +27,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class FilterDialog extends DialogFragment {
     private static final String VALIDTE_YEAR = "^[12][0-9]{3}$";
+    private static final int CURRENT_YEAR = 2023;
     private static final ArrayList<String> MONTHS = new ArrayList<String>() {{
         add("Ninguno");
         add("enero");
@@ -83,6 +84,7 @@ public class FilterDialog extends DialogFragment {
         db = EarthquakesDB.getDatabase(FilterDialog.this.getContext());
         pDao = db.countryDao();
         countries = removeAndSort((ArrayList<String>) pDao.getAllCountries());
+
         countries.add(0, "Ninguno");
         adapterCountry = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, countries);
         spnCountry.setAdapter(adapterCountry);
@@ -119,7 +121,7 @@ public class FilterDialog extends DialogFragment {
                             dialogInterface.dismiss();
                         } else {
                             year = Integer.parseInt(etYear.getText().toString());
-                            if (!etYear.getText().toString().matches(VALIDTE_YEAR)){
+                            if (!etYear.getText().toString().matches(VALIDTE_YEAR) || year > CURRENT_YEAR){
                                 Snackbar.make(btn, R.string.error_invalid_year, Snackbar.LENGTH_LONG).show();
                             } else {
                                 listener.OnAceptarFilterListener(spnMonth.getSelectedItem().toString(), year, spnCountry.getSelectedItem().toString());
